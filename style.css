@@ -9,4 +9,9 @@ h1, p {
     width: 55px;
     height: 55px;
     display: inline-block;
+    text-align: center;
+    border-radius: 50%
+  }
+  .today {
+    background: lightblue
   }

@@ -3,7 +3,7 @@ import React from 'react';
 // components
 import Day from './Day';
 
-const Board = (props) => { console.log(props)
+const Board = (props) => { 
 
   return (
     <div className="board">
@@ -20,6 +20,7 @@ const Board = (props) => { console.log(props)
         props.dates.map(
           (date, i) => {
             if(date === 0) return <Day key = {i} />
+            else if(date ===  props.today) return <Day date={date} today = {props.today} key = {i} />
             else return <Day date ={date} key = {i} />;
           }
         )

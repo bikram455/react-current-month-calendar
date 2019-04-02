@@ -19,7 +19,7 @@ class App extends Component {
 
   getDates() {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var days = [], date = new Date(), month = months[date.getMonth()], year = date.getFullYear();
+    var days = [], date = new Date(), month = months[date.getMonth()], year = date.getFullYear(), today = date.getDate();
     const lastDate = new Date(date.getFullYear(), 1+date.getMonth(), 0);
     const stop = new Date(lastDate).getDate();
     const firstDate = (date.getFullYear() +' '+ (1+date.getMonth()) +' '+ 1);
@@ -29,7 +29,7 @@ class App extends Component {
         else if(i <= stop) days[i] = j++;
         else days[i] = 0;
     }
-    return {days, month, year};
+    return {days, month, year, today};
   }
 
   componentDidMount() {
@@ -39,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Board days={this.days} dates = {this.dates.days} month = {this.dates.month} year = {this.dates.year} />
+        <Board days={this.days} dates = {this.dates.days} month = {this.dates.month} year = {this.dates.year} today = {this.dates.today}/>
       </div>
     );
   }
