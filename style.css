@@ -1,0 +1,12 @@
+h1, p {
+  font-family: Lato;
+}
+.board {
+  width: 400px;
+  height: 400px
+}
+  .day{
+    width: 55px;
+    height: 55px;
+    display: inline-block;
+  }
