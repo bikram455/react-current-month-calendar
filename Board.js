@@ -3,7 +3,7 @@ import React from 'react';
 // components
 import Day from './Day';
 
-const Board = (props) => { 
+const Board = (props) => { console.log(props)
 
   return (
     <div className="board">
@@ -17,7 +17,16 @@ const Board = (props) => {
           )
         }
       </select>
-      <label> {props.dates.year} </label>
+      &nbsp;&nbsp;&nbsp;
+      <select onChange={ props.getDates }>
+        {
+          props.years.map(
+            (year,i) => {
+              return (<option key = {i} selected = {year == props.dates.year} value={year}> {year} </option>)
+            }
+          )
+        }
+      </select>
       <hr></hr>
 
       {

@@ -29,6 +29,8 @@ class App extends Component {
       ];
     this.days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     this.dates = this.getDates(new Date());
+    this.years = [];
+    for(var i=0; i<=40; i++) this.years[this.years.length] = 1990 + i;
   }
 
   getDates = (date) => {
@@ -45,14 +47,18 @@ class App extends Component {
     return {days, month, year, today};
   }
 
-  changeDates = (event) => {
-    const newDate = new Date(2019, +event.target.value, 1);
-    console.log('month changed', event.target.value, newDate);
-    this.dates = this.getDates(newDate);
-    console.log(this.dates)
-    this.setState({
-      flag: !this.state.flag
-    })
+  changeDates = (event) => {console.log(event.target.value, this.dates.month.value, this.dates.month.year)
+    const newDate, value = event.target.value;
+    if(value < 1990){
+      newDate = new Date(this.dates.year, 1 + value, 1);console.log(newDate)
+      // this.dates = this.getDates(newDate);
+    } else {
+      newDate = new Date(value, this.dates.month.value, 1);console.log(newDate)
+      // this.dates = this.getDates(newDate);
+    }
+    // this.setState({
+    //   flag: !this.state.flag
+    // });
   }
 
   componentDidMount() {
@@ -62,7 +68,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Board days={this.days} dates = {this.dates} months= {this.months} getDates = {this.changeDates} />
+        <Board days={this.days} dates = {this.dates} months= {this.months} getDates = {this.changeDates} years= {this.years} />
       </div>
     );
   }
