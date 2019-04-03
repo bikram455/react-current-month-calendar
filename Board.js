@@ -7,7 +7,7 @@ const Board = (props) => {
 
   return (
     <div className="board">
-      <h3> {`${props.month}, ${props.year}`} </h3>
+      <h3> {`${props.dates.month}, ${props.dates.year}`} </h3>
       
       {
         props.days.map(
@@ -17,10 +17,10 @@ const Board = (props) => {
         )
       }
       {
-        props.dates.map(
+        props.dates.days.map(
           (date, i) => {
             if(date === 0) return <Day key = {i} />
-            else if(date ===  props.today) return <Day date={date} today = {props.today} key = {i} />
+            else if(date ===  props.dates.today) return <Day date={date} today = {props.dates.today} key = {i} />
             else return <Day date ={date} key = {i} />;
           }
         )

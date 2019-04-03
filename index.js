@@ -12,14 +12,26 @@ class App extends Component {
     this.state = {
       name: 'React'
     };
-    //this.days = [];
+    this.months = [
+      {name: 'January', value: 0}, 
+      {name: 'February', value: 1}, 
+      {name: 'March', value: 2}, 
+      {name: 'April', value: 3}, 
+      {name:'May', value: 4}, 
+      {name: 'June', value: 5}, 
+      {name: 'July', value: 6}, 
+      {name: 'August', value: 7}, 
+      {name: 'September', value: 8}, 
+      {name: 'October', value: 9}, 
+      {name: 'November', value: 10}, 
+      {name: 'December', value: 11}
+      ];
     this.days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     this.dates = this.getDates();
   }
 
   getDates() {
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var days = [], date = new Date(), month = months[date.getMonth()], year = date.getFullYear(), today = date.getDate();
+    var days = [], date = new Date(), month = this.months[date.getMonth()].name, year = date.getFullYear(), today = date.getDate();
     const lastDate = new Date(date.getFullYear(), 1+date.getMonth(), 0);
     const stop = new Date(lastDate).getDate();
     const firstDate = (date.getFullYear() +' '+ (1+date.getMonth()) +' '+ 1);
@@ -39,7 +51,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Board days={this.days} dates = {this.dates.days} month = {this.dates.month} year = {this.dates.year} today = {this.dates.today}/>
+        <Board days={this.days} dates = {this.dates}/>
       </div>
     );
   }
