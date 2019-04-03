@@ -7,8 +7,19 @@ const Board = (props) => {
 
   return (
     <div className="board">
-      <h3> {`${props.dates.month}, ${props.dates.year}`} </h3>
       
+      <select onChange={ props.getDates }>
+        {
+          props.months.map(
+            (month,i) => {console.log(month.name, props.dates.month.name, month.name == props.dates.month.name)
+              return (<option key = {i} selected = {month.name === props.dates.month.name} value={month.value}> {month.name} </option>)
+            }
+          )
+        }
+      </select>
+      <label> {props.dates.year} </label>
+      <hr></hr>
+
       {
         props.days.map(
           (day, i) => {
@@ -16,6 +27,7 @@ const Board = (props) => {
           }
         )
       }
+
       {
         props.dates.days.map(
           (date, i) => {
@@ -25,6 +37,7 @@ const Board = (props) => {
           }
         )
       }
+
     </div>
   );
 }

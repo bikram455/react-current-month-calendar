@@ -27,11 +27,11 @@ class App extends Component {
       {name: 'December', value: 11}
       ];
     this.days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    this.dates = this.getDates();
+    this.dates = this.getDates(new Date());
   }
 
-  getDates() {
-    var days = [], date = new Date(), month = this.months[date.getMonth()].name, year = date.getFullYear(), today = date.getDate();
+  getDates(date) {
+    var days = [], month = this.months[date.getMonth()], year = date.getFullYear(), today = date.getDate();
     const lastDate = new Date(date.getFullYear(), 1+date.getMonth(), 0);
     const stop = new Date(lastDate).getDate();
     const firstDate = (date.getFullYear() +' '+ (1+date.getMonth()) +' '+ 1);
@@ -44,6 +44,11 @@ class App extends Component {
     return {days, month, year, today};
   }
 
+  changeDates(event) { 
+    console.log('month changed', event.target.value, new Date(2019, +event.target.value, 1));
+    
+  }
+
   componentDidMount() {
     
   }
@@ -51,7 +56,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Board days={this.days} dates = {this.dates}/>
+        <Board days={this.days} dates = {this.dates} months= {this.months} getDates = {this.changeDates} />
       </div>
     );
   }
