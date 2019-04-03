@@ -47,18 +47,19 @@ class App extends Component {
     return {days, month, year, today};
   }
 
-  changeDates = (event) => {console.log(event.target.value, this.dates.month.value, this.dates.month.year)
-    const newDate, value = event.target.value;
+  changeDates = (event) => {console.log(event.target.value, this.dates.month.value, this.dates.year)
+    const value = event.target.value;
+    var newDate;
     if(value < 1990){
-      newDate = new Date(this.dates.year, 1 + value, 1);console.log(newDate)
-      // this.dates = this.getDates(newDate);
+      newDate = new Date(this.dates.year, value, 1);console.log('newDate: ',newDate)
+      this.dates = this.getDates(newDate);
     } else {
       newDate = new Date(value, this.dates.month.value, 1);console.log(newDate)
-      // this.dates = this.getDates(newDate);
+      this.dates = this.getDates(newDate);
     }
-    // this.setState({
-    //   flag: !this.state.flag
-    // });
+    this.setState({
+      flag: !this.state.flag
+    });
   }
 
   componentDidMount() {

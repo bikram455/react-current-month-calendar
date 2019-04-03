@@ -8,21 +8,21 @@ const Board = (props) => { console.log(props)
   return (
     <div className="board">
       
-      <select onChange={ props.getDates }>
+      <select onChange={ props.getDates } className="selection">
         {
           props.months.map(
             (month,i) => {
-              return (<option key = {i} selected = {month.name === props.dates.month.name} value={month.value}> {month.name} </option>)
+              return (<option key = {i} selected = {month.name === props.dates.month.name} value={month.value} className="option"> {month.name} </option>)
             }
           )
         }
       </select>
       &nbsp;&nbsp;&nbsp;
-      <select onChange={ props.getDates }>
+      <select onChange={ props.getDates } className="selection">
         {
           props.years.map(
             (year,i) => {
-              return (<option key = {i} selected = {year == props.dates.year} value={year}> {year} </option>)
+              return (<option key = {i} selected = {year == props.dates.year} value={year} className="option"> {year} </option>)
             }
           )
         }
