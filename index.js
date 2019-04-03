@@ -7,10 +7,11 @@ import Hello from './Hello';
 import Board from './Board';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      name: 'React'
+      name: 'React',
+      flag: true
     };
     this.months = [
       {name: 'January', value: 0}, 
@@ -30,23 +31,28 @@ class App extends Component {
     this.dates = this.getDates(new Date());
   }
 
-  getDates(date) {
+  getDates = (date) => {
     var days = [], month = this.months[date.getMonth()], year = date.getFullYear(), today = date.getDate();
     const lastDate = new Date(date.getFullYear(), 1+date.getMonth(), 0);
     const stop = new Date(lastDate).getDate();
     const firstDate = (date.getFullYear() +' '+ (1+date.getMonth()) +' '+ 1);
     const start = new Date(firstDate).getDay();
-    for(var i=0,j=1;i<35;i++) {
-        if(i<start) days[i] = 0;
-        else if(i <= stop) days[i] = j++;
+    for(var i=0,j=1;i<42;i++) {
+        if(i < start) days[i] = 0;
+        else if(j <= stop) days[i] = j++;
         else days[i] = 0;
     }
     return {days, month, year, today};
   }
 
-  changeDates(event) { 
-    console.log('month changed', event.target.value, new Date(2019, +event.target.value, 1));
-    
+  changeDates = (event) => {
+    const newDate = new Date(2019, +event.target.value, 1);
+    console.log('month changed', event.target.value, newDate);
+    this.dates = this.getDates(newDate);
+    console.log(this.dates)
+    this.setState({
+      flag: !this.state.flag
+    })
   }
 
   componentDidMount() {

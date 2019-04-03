@@ -11,7 +11,7 @@ const Board = (props) => {
       <select onChange={ props.getDates }>
         {
           props.months.map(
-            (month,i) => {console.log(month.name, props.dates.month.name, month.name == props.dates.month.name)
+            (month,i) => {
               return (<option key = {i} selected = {month.name === props.dates.month.name} value={month.value}> {month.name} </option>)
             }
           )
