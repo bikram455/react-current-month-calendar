@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   getDates = (date) => {
-    var days = [], month = this.months[date.getMonth()], year = date.getFullYear(), today = date.getDate();
+    var days = [], month = this.months[date.getMonth()], year = date.getFullYear(), today = new Date().getDate();
     const lastDate = new Date(date.getFullYear(), 1+date.getMonth(), 0);
     const stop = new Date(lastDate).getDate();
     const firstDate = (date.getFullYear() +' '+ (1+date.getMonth()) +' '+ 1);
@@ -44,7 +44,8 @@ class App extends Component {
         else if(j <= stop) days[i] = j++;
         else days[i] = 0;
     }
-    return {days, month, year, today};
+    if(new Date().getMonth() === date.getMonth()) return {days, month, year, today};
+    else return {days, month, year};
   }
 
   changeDates = (event) => {console.log(event.target.value, this.dates.month.value, this.dates.year)
